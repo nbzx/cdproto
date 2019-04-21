@@ -300,14 +300,17 @@ func (n *Node) xpath(stopAtDocument, stopAtID bool) string {
 		}
 		n.Parent.RUnlock()
 
-		if found {
+		if found && i > 1 {
 			pos = "[" + strconv.Itoa(i) + "]"
 		}
 
 		p = n.Parent.xpath(stopAtDocument, stopAtID)
 	}
-
-	return p + "/" + n.LocalName + pos
+	return_value := p
+	if n.LocalName != "" || pos != "" {
+		return_value += "/" + n.LocalName + pos
+	}
+	return return_value
 }
 
 // PartialXPathByID returns the partial XPath for the node, stopping at the
