@@ -9,7 +9,7 @@ package profiler
 import (
 	"context"
 
-	"github.com/chromedp/cdproto/cdp"
+	"github.com/nbzx/cdproto/cdp"
 )
 
 // DisableParams [no description].

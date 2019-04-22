@@ -9,7 +9,7 @@ package indexeddb
 import (
 	"context"
 
-	"github.com/chromedp/cdproto/cdp"
+	"github.com/nbzx/cdproto/cdp"
 )
 
 // ClearObjectStoreParams clears all entries from an object store.

@@ -11,7 +11,7 @@ package log
 import (
 	"context"
 
-	"github.com/chromedp/cdproto/cdp"
+	"github.com/nbzx/cdproto/cdp"
 )
 
 // ClearParams clears the log.

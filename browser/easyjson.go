@@ -4,7 +4,7 @@ package browser
 
 import (
 	json "encoding/json"
-	target "github.com/chromedp/cdproto/target"
+	target "github.com/nbzx/cdproto/target"
 	easyjson "github.com/mailru/easyjson"
 	jlexer "github.com/mailru/easyjson/jlexer"
 	jwriter "github.com/mailru/easyjson/jwriter"

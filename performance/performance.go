@@ -9,7 +9,7 @@ package performance
 import (
 	"context"
 
-	"github.com/chromedp/cdproto/cdp"
+	"github.com/nbzx/cdproto/cdp"
 )
 
 // DisableParams disable collecting and reporting metrics.

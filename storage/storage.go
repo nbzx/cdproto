@@ -9,7 +9,7 @@ package storage
 import (
 	"context"
 
-	"github.com/chromedp/cdproto/cdp"
+	"github.com/nbzx/cdproto/cdp"
 )
 
 // ClearDataForOriginParams clears storage for origin.

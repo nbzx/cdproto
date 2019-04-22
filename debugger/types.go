@@ -5,7 +5,7 @@ package debugger
 import (
 	"errors"
 
-	"github.com/chromedp/cdproto/runtime"
+	"github.com/nbzx/cdproto/runtime"
 	"github.com/mailru/easyjson"
 	"github.com/mailru/easyjson/jlexer"
 	"github.com/mailru/easyjson/jwriter"

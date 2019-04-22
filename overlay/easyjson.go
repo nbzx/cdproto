@@ -4,10 +4,10 @@ package overlay
 
 import (
 	json "encoding/json"
-	cdp "github.com/chromedp/cdproto/cdp"
-	dom "github.com/chromedp/cdproto/dom"
-	page "github.com/chromedp/cdproto/page"
-	runtime "github.com/chromedp/cdproto/runtime"
+	cdp "github.com/nbzx/cdproto/cdp"
+	dom "github.com/nbzx/cdproto/dom"
+	page "github.com/nbzx/cdproto/page"
+	runtime "github.com/nbzx/cdproto/runtime"
 	easyjson "github.com/mailru/easyjson"
 	jlexer "github.com/mailru/easyjson/jlexer"
 	jwriter "github.com/mailru/easyjson/jwriter"

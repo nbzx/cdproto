@@ -4,8 +4,8 @@ package profiler
 
 import (
 	json "encoding/json"
-	debugger "github.com/chromedp/cdproto/debugger"
-	runtime "github.com/chromedp/cdproto/runtime"
+	debugger "github.com/nbzx/cdproto/debugger"
+	runtime "github.com/nbzx/cdproto/runtime"
 	easyjson "github.com/mailru/easyjson"
 	jlexer "github.com/mailru/easyjson/jlexer"
 	jwriter "github.com/mailru/easyjson/jwriter"

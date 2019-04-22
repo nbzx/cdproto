@@ -9,7 +9,7 @@ package inspector
 import (
 	"context"
 
-	"github.com/chromedp/cdproto/cdp"
+	"github.com/nbzx/cdproto/cdp"
 )
 
 // DisableParams disables inspector domain notifications.

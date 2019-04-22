@@ -5,7 +5,7 @@ package serviceworker
 import (
 	"errors"
 
-	"github.com/chromedp/cdproto/target"
+	"github.com/nbzx/cdproto/target"
 	"github.com/mailru/easyjson"
 	"github.com/mailru/easyjson/jlexer"
 	"github.com/mailru/easyjson/jwriter"

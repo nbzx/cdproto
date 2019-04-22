@@ -4,11 +4,11 @@ package network
 
 import (
 	json "encoding/json"
-	cdp "github.com/chromedp/cdproto/cdp"
-	debugger "github.com/chromedp/cdproto/debugger"
-	io "github.com/chromedp/cdproto/io"
-	runtime "github.com/chromedp/cdproto/runtime"
-	security "github.com/chromedp/cdproto/security"
+	cdp "github.com/nbzx/cdproto/cdp"
+	debugger "github.com/nbzx/cdproto/debugger"
+	io "github.com/nbzx/cdproto/io"
+	runtime "github.com/nbzx/cdproto/runtime"
+	security "github.com/nbzx/cdproto/security"
 	easyjson "github.com/mailru/easyjson"
 	jlexer "github.com/mailru/easyjson/jlexer"
 	jwriter "github.com/mailru/easyjson/jwriter"
