@@ -1388,10 +1388,32 @@ func SetOuterHTML(nodeID cdp.NodeID, outerHTML string) *SetOuterHTMLParams {
 	}
 }
 
+// SetOuterHTMLParams sets node HTML markup, returns new node id.
+type SetInnerHTMLParams struct {
+	NodeID    cdp.NodeID `json:"nodeId"`    // Id of the node to set markup for.
+	InnerHTML string     `json:"innerHTML"` // Outer HTML markup to set.
+}
+
+// SetInnerHTML sets node HTML markup, returns new node id.
+//
+// parameters:
+//   nodeID - Id of the node to set markup for.
+//   InnerHTML - Outer HTML markup to set.
+//func SetInnerHTML(nodeID cdp.NodeID, innerHTML string) *SetInnerHTMLParams {
+//	return &SetInnerHTMLParams{
+//		NodeID:    nodeID,
+//		InnerHTML: innerHTML,
+//	}
+//}
+
 // Do executes DOM.setOuterHTML against the provided context.
 func (p *SetOuterHTMLParams) Do(ctxt context.Context, h cdp.Executor) (err error) {
 	return h.Execute(ctxt, CommandSetOuterHTML, p, nil)
 }
+// Do executes DOM.setInnerHTML against the provided context.
+//func (p *SetInnerHTMLParams) Do(ctxt context.Context, h cdp.Executor) (err error) {
+//	return h.Execute(ctxt, CommandSetInnerHTML, p, nil)
+//}
 
 // UndoParams undoes the last performed action.
 type UndoParams struct{}
@@ -1483,6 +1505,7 @@ const (
 	CommandSetNodeName                     = "DOM.setNodeName"
 	CommandSetNodeValue                    = "DOM.setNodeValue"
 	CommandSetOuterHTML                    = "DOM.setOuterHTML"
+	CommandSetInnerHTML                    = "DOM.setInnerHTML"
 	CommandUndo                            = "DOM.undo"
 	CommandGetFrameOwner                   = "DOM.getFrameOwner"
 )
