@@ -21,26 +21,30 @@ type EnableParams struct{}
 
 // Enable enables the WebAudio domain and starts sending context lifetime
 // events.
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#method-enable
 func Enable() *EnableParams {
 	return &EnableParams{}
 }
 
 // Do executes WebAudio.enable against the provided context.
-func (p *EnableParams) Do(ctxt context.Context) (err error) {
-	return cdp.Execute(ctxt, CommandEnable, nil, nil)
+func (p *EnableParams) Do(ctx context.Context) (err error) {
+	return cdp.Execute(ctx, CommandEnable, nil, nil)
 }
 
 // DisableParams disables the WebAudio domain.
 type DisableParams struct{}
 
 // Disable disables the WebAudio domain.
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#method-disable
 func Disable() *DisableParams {
 	return &DisableParams{}
 }
 
 // Do executes WebAudio.disable against the provided context.
-func (p *DisableParams) Do(ctxt context.Context) (err error) {
-	return cdp.Execute(ctxt, CommandDisable, nil, nil)
+func (p *DisableParams) Do(ctx context.Context) (err error) {
+	return cdp.Execute(ctx, CommandDisable, nil, nil)
 }
 
 // GetRealtimeDataParams fetch the realtime data from the registered
@@ -50,6 +54,8 @@ type GetRealtimeDataParams struct {
 }
 
 // GetRealtimeData fetch the realtime data from the registered contexts.
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#method-getRealtimeData
 //
 // parameters:
 //   contextID
@@ -68,10 +74,10 @@ type GetRealtimeDataReturns struct {
 //
 // returns:
 //   realtimeData
-func (p *GetRealtimeDataParams) Do(ctxt context.Context) (realtimeData *ContextRealtimeData, err error) {
+func (p *GetRealtimeDataParams) Do(ctx context.Context) (realtimeData *ContextRealtimeData, err error) {
 	// execute
 	var res GetRealtimeDataReturns
-	err = cdp.Execute(ctxt, CommandGetRealtimeData, p, &res)
+	err = cdp.Execute(ctx, CommandGetRealtimeData, p, &res)
 	if err != nil {
 		return nil, err
 	}

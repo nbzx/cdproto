@@ -16,26 +16,30 @@ import (
 type DisableParams struct{}
 
 // Disable [no description].
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-disable
 func Disable() *DisableParams {
 	return &DisableParams{}
 }
 
 // Do executes Profiler.disable against the provided context.
-func (p *DisableParams) Do(ctxt context.Context) (err error) {
-	return cdp.Execute(ctxt, CommandDisable, nil, nil)
+func (p *DisableParams) Do(ctx context.Context) (err error) {
+	return cdp.Execute(ctx, CommandDisable, nil, nil)
 }
 
 // EnableParams [no description].
 type EnableParams struct{}
 
 // Enable [no description].
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-enable
 func Enable() *EnableParams {
 	return &EnableParams{}
 }
 
 // Do executes Profiler.enable against the provided context.
-func (p *EnableParams) Do(ctxt context.Context) (err error) {
-	return cdp.Execute(ctxt, CommandEnable, nil, nil)
+func (p *EnableParams) Do(ctx context.Context) (err error) {
+	return cdp.Execute(ctx, CommandEnable, nil, nil)
 }
 
 // GetBestEffortCoverageParams collect coverage data for the current isolate.
@@ -44,6 +48,8 @@ type GetBestEffortCoverageParams struct{}
 
 // GetBestEffortCoverage collect coverage data for the current isolate. The
 // coverage data may be incomplete due to garbage collection.
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-getBestEffortCoverage
 func GetBestEffortCoverage() *GetBestEffortCoverageParams {
 	return &GetBestEffortCoverageParams{}
 }
@@ -57,10 +63,10 @@ type GetBestEffortCoverageReturns struct {
 //
 // returns:
 //   result - Coverage data for the current isolate.
-func (p *GetBestEffortCoverageParams) Do(ctxt context.Context) (result []*ScriptCoverage, err error) {
+func (p *GetBestEffortCoverageParams) Do(ctx context.Context) (result []*ScriptCoverage, err error) {
 	// execute
 	var res GetBestEffortCoverageReturns
-	err = cdp.Execute(ctxt, CommandGetBestEffortCoverage, nil, &res)
+	err = cdp.Execute(ctx, CommandGetBestEffortCoverage, nil, &res)
 	if err != nil {
 		return nil, err
 	}
@@ -77,6 +83,8 @@ type SetSamplingIntervalParams struct {
 // SetSamplingInterval changes CPU profiler sampling interval. Must be called
 // before CPU profiles recording started.
 //
+// See: https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-setSamplingInterval
+//
 // parameters:
 //   interval - New sampling interval in microseconds.
 func SetSamplingInterval(interval int64) *SetSamplingIntervalParams {
@@ -86,21 +94,23 @@ func SetSamplingInterval(interval int64) *SetSamplingIntervalParams {
 }
 
 // Do executes Profiler.setSamplingInterval against the provided context.
-func (p *SetSamplingIntervalParams) Do(ctxt context.Context) (err error) {
-	return cdp.Execute(ctxt, CommandSetSamplingInterval, p, nil)
+func (p *SetSamplingIntervalParams) Do(ctx context.Context) (err error) {
+	return cdp.Execute(ctx, CommandSetSamplingInterval, p, nil)
 }
 
 // StartParams [no description].
 type StartParams struct{}
 
 // Start [no description].
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-start
 func Start() *StartParams {
 	return &StartParams{}
 }
 
 // Do executes Profiler.start against the provided context.
-func (p *StartParams) Do(ctxt context.Context) (err error) {
-	return cdp.Execute(ctxt, CommandStart, nil, nil)
+func (p *StartParams) Do(ctx context.Context) (err error) {
+	return cdp.Execute(ctx, CommandStart, nil, nil)
 }
 
 // StartPreciseCoverageParams enable precise code coverage. Coverage data for
@@ -114,6 +124,8 @@ type StartPreciseCoverageParams struct {
 // StartPreciseCoverage enable precise code coverage. Coverage data for
 // JavaScript executed before enabling precise code coverage may be incomplete.
 // Enabling prevents running optimized code and resets execution counters.
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-startPreciseCoverage
 //
 // parameters:
 func StartPreciseCoverage() *StartPreciseCoverageParams {
@@ -134,27 +146,31 @@ func (p StartPreciseCoverageParams) WithDetailed(detailed bool) *StartPreciseCov
 }
 
 // Do executes Profiler.startPreciseCoverage against the provided context.
-func (p *StartPreciseCoverageParams) Do(ctxt context.Context) (err error) {
-	return cdp.Execute(ctxt, CommandStartPreciseCoverage, p, nil)
+func (p *StartPreciseCoverageParams) Do(ctx context.Context) (err error) {
+	return cdp.Execute(ctx, CommandStartPreciseCoverage, p, nil)
 }
 
 // StartTypeProfileParams enable type profile.
 type StartTypeProfileParams struct{}
 
 // StartTypeProfile enable type profile.
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-startTypeProfile
 func StartTypeProfile() *StartTypeProfileParams {
 	return &StartTypeProfileParams{}
 }
 
 // Do executes Profiler.startTypeProfile against the provided context.
-func (p *StartTypeProfileParams) Do(ctxt context.Context) (err error) {
-	return cdp.Execute(ctxt, CommandStartTypeProfile, nil, nil)
+func (p *StartTypeProfileParams) Do(ctx context.Context) (err error) {
+	return cdp.Execute(ctx, CommandStartTypeProfile, nil, nil)
 }
 
 // StopParams [no description].
 type StopParams struct{}
 
 // Stop [no description].
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-stop
 func Stop() *StopParams {
 	return &StopParams{}
 }
@@ -168,10 +184,10 @@ type StopReturns struct {
 //
 // returns:
 //   profile - Recorded profile.
-func (p *StopParams) Do(ctxt context.Context) (profile *Profile, err error) {
+func (p *StopParams) Do(ctx context.Context) (profile *Profile, err error) {
 	// execute
 	var res StopReturns
-	err = cdp.Execute(ctxt, CommandStop, nil, &res)
+	err = cdp.Execute(ctx, CommandStop, nil, &res)
 	if err != nil {
 		return nil, err
 	}
@@ -186,13 +202,15 @@ type StopPreciseCoverageParams struct{}
 
 // StopPreciseCoverage disable precise code coverage. Disabling releases
 // unnecessary execution count records and allows executing optimized code.
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-stopPreciseCoverage
 func StopPreciseCoverage() *StopPreciseCoverageParams {
 	return &StopPreciseCoverageParams{}
 }
 
 // Do executes Profiler.stopPreciseCoverage against the provided context.
-func (p *StopPreciseCoverageParams) Do(ctxt context.Context) (err error) {
-	return cdp.Execute(ctxt, CommandStopPreciseCoverage, nil, nil)
+func (p *StopPreciseCoverageParams) Do(ctx context.Context) (err error) {
+	return cdp.Execute(ctx, CommandStopPreciseCoverage, nil, nil)
 }
 
 // StopTypeProfileParams disable type profile. Disabling releases type
@@ -201,13 +219,15 @@ type StopTypeProfileParams struct{}
 
 // StopTypeProfile disable type profile. Disabling releases type profile data
 // collected so far.
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-stopTypeProfile
 func StopTypeProfile() *StopTypeProfileParams {
 	return &StopTypeProfileParams{}
 }
 
 // Do executes Profiler.stopTypeProfile against the provided context.
-func (p *StopTypeProfileParams) Do(ctxt context.Context) (err error) {
-	return cdp.Execute(ctxt, CommandStopTypeProfile, nil, nil)
+func (p *StopTypeProfileParams) Do(ctx context.Context) (err error) {
+	return cdp.Execute(ctx, CommandStopTypeProfile, nil, nil)
 }
 
 // TakePreciseCoverageParams collect coverage data for the current isolate,
@@ -216,6 +236,8 @@ type TakePreciseCoverageParams struct{}
 
 // TakePreciseCoverage collect coverage data for the current isolate, and
 // resets execution counters. Precise code coverage needs to have started.
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-takePreciseCoverage
 func TakePreciseCoverage() *TakePreciseCoverageParams {
 	return &TakePreciseCoverageParams{}
 }
@@ -229,10 +251,10 @@ type TakePreciseCoverageReturns struct {
 //
 // returns:
 //   result - Coverage data for the current isolate.
-func (p *TakePreciseCoverageParams) Do(ctxt context.Context) (result []*ScriptCoverage, err error) {
+func (p *TakePreciseCoverageParams) Do(ctx context.Context) (result []*ScriptCoverage, err error) {
 	// execute
 	var res TakePreciseCoverageReturns
-	err = cdp.Execute(ctxt, CommandTakePreciseCoverage, nil, &res)
+	err = cdp.Execute(ctx, CommandTakePreciseCoverage, nil, &res)
 	if err != nil {
 		return nil, err
 	}
@@ -244,6 +266,8 @@ func (p *TakePreciseCoverageParams) Do(ctxt context.Context) (result []*ScriptCo
 type TakeTypeProfileParams struct{}
 
 // TakeTypeProfile collect type profile.
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-takeTypeProfile
 func TakeTypeProfile() *TakeTypeProfileParams {
 	return &TakeTypeProfileParams{}
 }
@@ -257,10 +281,10 @@ type TakeTypeProfileReturns struct {
 //
 // returns:
 //   result - Type profile for all scripts since startTypeProfile() was turned on.
-func (p *TakeTypeProfileParams) Do(ctxt context.Context) (result []*ScriptTypeProfile, err error) {
+func (p *TakeTypeProfileParams) Do(ctx context.Context) (result []*ScriptTypeProfile, err error) {
 	// execute
 	var res TakeTypeProfileReturns
-	err = cdp.Execute(ctxt, CommandTakeTypeProfile, nil, &res)
+	err = cdp.Execute(ctx, CommandTakeTypeProfile, nil, &res)
 	if err != nil {
 		return nil, err
 	}

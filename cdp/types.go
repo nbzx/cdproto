@@ -47,10 +47,37 @@ func Execute(ctx context.Context, method string, params easyjson.Marshaler, res 
 	if executor := ctx.Value(executorKey); executor != nil {
 		return executor.(Executor).Execute(ctx, method, params, res)
 	}
-	return errors.New("invalid context")
+	return ErrInvalidContext
+}
+
+// Error is a error.
+type Error string
+
+// Error values.
+const (
+	// ErrInvalidContext is the invalid context error.
+	ErrInvalidContext Error = "invalid context"
+
+	// ErrMsgMissingParamsOrResult is the msg missing params or result error.
+	ErrMsgMissingParamsOrResult Error = "msg missing params or result"
+)
+
+// Error satisfies the error interface.
+func (err Error) Error() string {
+	return string(err)
+}
+
+// ErrUnknownCommandOrEvent is an unknown command or event error.
+type ErrUnknownCommandOrEvent string
+
+// Error satisfies the error interface.
+func (err ErrUnknownCommandOrEvent) Error() string {
+	return fmt.Sprintf("unknown command or event %q", string(err))
 }
 
 // NodeID unique DOM node identifier.
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/DOM#type-NodeId
 type NodeID int64
 
 // Int64 returns the NodeID as int64 value.
@@ -80,6 +107,8 @@ func (t *NodeID) UnmarshalJSON(buf []byte) error {
 
 // BackendNodeID unique DOM node identifier used to reference a node that may
 // not have been pushed to the front-end.
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/DOM#type-BackendNodeId
 type BackendNodeID int64
 
 // Int64 returns the BackendNodeID as int64 value.
@@ -108,6 +137,8 @@ func (t *BackendNodeID) UnmarshalJSON(buf []byte) error {
 }
 
 // BackendNode backend node with a friendly name.
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/DOM#type-BackendNode
 type BackendNode struct {
 	NodeType      NodeType      `json:"nodeType"` // Node's nodeType.
 	NodeName      string        `json:"nodeName"` // Node's nodeName.
@@ -115,6 +146,8 @@ type BackendNode struct {
 }
 
 // PseudoType pseudo element type.
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/DOM#type-PseudoType
 type PseudoType string
 
 // String returns the PseudoType as string value.
@@ -196,6 +229,8 @@ func (t *PseudoType) UnmarshalJSON(buf []byte) error {
 }
 
 // ShadowRootType shadow root type.
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/DOM#type-ShadowRootType
 type ShadowRootType string
 
 // String returns the ShadowRootType as string value.
@@ -242,6 +277,8 @@ func (t *ShadowRootType) UnmarshalJSON(buf []byte) error {
 
 // Node DOM interaction is implemented in terms of mirror objects that
 // represent the actual DOM nodes. DOMNode is a base node mirror type.
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/DOM#type-Node
 type Node struct {
 	NodeID           NodeID         `json:"nodeId"`                     // Node identifier that is passed into the rest of the DOM messages as the nodeId. Backend will only push node with given id once. It is aware of all requested nodes and will only fire DOM events for nodes known to the client.
 	ParentID         NodeID         `json:"parentId,omitempty"`         // The id of the parent node if any.
@@ -395,6 +432,8 @@ func (ns NodeState) String() string {
 const EmptyNodeID = NodeID(0)
 
 // RGBA a structure holding an RGBA color.
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/DOM#type-RGBA
 type RGBA struct {
 	R int64   `json:"r"`           // The red component, in the [0-255] range.
 	G int64   `json:"g"`           // The green component, in the [0-255] range.
@@ -403,6 +442,8 @@ type RGBA struct {
 }
 
 // NodeType node type.
+//
+// See: https://developer.mozilla.org/en/docs/Web/API/Node/nodeType
 type NodeType int64
 
 // Int64 returns the NodeType as int64 value.
@@ -507,6 +548,8 @@ func (t *NodeType) UnmarshalJSON(buf []byte) error {
 }
 
 // LoaderID unique loader identifier.
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/Network#type-LoaderId
 type LoaderID string
 
 // String returns the LoaderID as string value.
@@ -515,6 +558,8 @@ func (t LoaderID) String() string {
 }
 
 // TimeSinceEpoch UTC time in seconds, counted from January 1, 1970.
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/Network#type-TimeSinceEpoch
 type TimeSinceEpoch time.Time
 
 // Time returns the TimeSinceEpoch as time.Time value.
@@ -547,6 +592,8 @@ func (t *TimeSinceEpoch) UnmarshalJSON(buf []byte) error {
 
 // MonotonicTime monotonically increasing time in seconds since an arbitrary
 // point in the past.
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/Network#type-MonotonicTime
 type MonotonicTime time.Time
 
 // Time returns the MonotonicTime as time.Time value.
@@ -587,6 +634,8 @@ func (t *MonotonicTime) UnmarshalJSON(buf []byte) error {
 }
 
 // FrameID unique frame identifier.
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/Page#type-FrameId
 type FrameID string
 
 // String returns the FrameID as string value.
@@ -610,6 +659,8 @@ func (t *FrameID) UnmarshalJSON(buf []byte) error {
 }
 
 // Frame information about the Frame on the page.
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/Page#type-Frame
 type Frame struct {
 	ID             FrameID          `json:"id"`                       // Frame unique identifier.
 	ParentID       FrameID          `json:"parentId,omitempty"`       // Parent frame identifier.

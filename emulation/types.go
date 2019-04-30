@@ -11,6 +11,8 @@ import (
 )
 
 // ScreenOrientation screen orientation.
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/Emulation#type-ScreenOrientation
 type ScreenOrientation struct {
 	Type  OrientationType `json:"type"`  // Orientation type.
 	Angle int64           `json:"angle"` // Orientation angle.
@@ -21,6 +23,8 @@ type ScreenOrientation struct {
 // any) to run; pause: The virtual time base may not advance;
 // pauseIfNetworkFetchesPending: The virtual time base may not advance if there
 // are any pending resource fetches.
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/Emulation#type-VirtualTimePolicy
 type VirtualTimePolicy string
 
 // String returns the VirtualTimePolicy as string value.
@@ -66,6 +70,8 @@ func (t *VirtualTimePolicy) UnmarshalJSON(buf []byte) error {
 }
 
 // OrientationType orientation type.
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/Emulation#type-type
 type OrientationType string
 
 // String returns the OrientationType as string value.
@@ -115,6 +121,8 @@ func (t *OrientationType) UnmarshalJSON(buf []byte) error {
 
 // SetEmitTouchEventsForMouseConfiguration touch/gesture events
 // configuration. Default: current platform.
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/Emulation#type-configuration
 type SetEmitTouchEventsForMouseConfiguration string
 
 // String returns the SetEmitTouchEventsForMouseConfiguration as string value.

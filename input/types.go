@@ -14,6 +14,8 @@ import (
 )
 
 // TouchPoint [no description].
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/Input#type-TouchPoint
 type TouchPoint struct {
 	X             float64 `json:"x"`                       // X coordinate of the event relative to the main frame's viewport in CSS pixels.
 	Y             float64 `json:"y"`                       // Y coordinate of the event relative to the main frame's viewport in CSS pixels. 0 refers to the top of the viewport and Y increases as it proceeds towards the bottom of the viewport.
@@ -25,6 +27,8 @@ type TouchPoint struct {
 }
 
 // GestureType [no description].
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/Input#type-GestureSourceType
 type GestureType string
 
 // String returns the GestureType as string value.
@@ -70,6 +74,8 @@ func (t *GestureType) UnmarshalJSON(buf []byte) error {
 }
 
 // TimeSinceEpoch UTC time in seconds, counted from January 1, 1970.
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/Input#type-TimeSinceEpoch
 type TimeSinceEpoch time.Time
 
 // Time returns the TimeSinceEpoch as time.Time value.
@@ -173,6 +179,8 @@ func (t *Modifier) UnmarshalJSON(buf []byte) error {
 const ModifierCommand Modifier = ModifierMeta
 
 // KeyType type of the key event.
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/Input#type-type
 type KeyType string
 
 // String returns the KeyType as string value.
@@ -221,6 +229,8 @@ func (t *KeyType) UnmarshalJSON(buf []byte) error {
 }
 
 // MouseType type of the mouse event.
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/Input#type-type
 type MouseType string
 
 // String returns the MouseType as string value.
@@ -269,6 +279,8 @@ func (t *MouseType) UnmarshalJSON(buf []byte) error {
 }
 
 // ButtonType mouse button (default: "none").
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/Input#type-button
 type ButtonType string
 
 // String returns the ButtonType as string value.
@@ -323,6 +335,8 @@ func (t *ButtonType) UnmarshalJSON(buf []byte) error {
 }
 
 // DispatchMouseEventPointerType pointer type (default: "mouse").
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/Input#type-pointerType
 type DispatchMouseEventPointerType string
 
 // String returns the DispatchMouseEventPointerType as string value.
@@ -367,6 +381,8 @@ func (t *DispatchMouseEventPointerType) UnmarshalJSON(buf []byte) error {
 // TouchType type of the touch event. TouchEnd and TouchCancel must not
 // contain any touch points, while TouchStart and TouchMove must contains at
 // least one.
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/Input#type-type
 type TouchType string
 
 // String returns the TouchType as string value.

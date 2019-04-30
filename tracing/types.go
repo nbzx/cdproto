@@ -12,9 +12,13 @@ import (
 
 // MemoryDumpConfig configuration for memory dump. Used only when
 // "memory-infra" category is enabled.
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/Tracing#type-MemoryDumpConfig
 type MemoryDumpConfig struct{}
 
 // TraceConfig [no description].
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/Tracing#type-TraceConfig
 type TraceConfig struct {
 	RecordMode           RecordMode        `json:"recordMode,omitempty"`           // Controls how the trace buffer stores data.
 	EnableSampling       bool              `json:"enableSampling,omitempty"`       // Turns on JavaScript stack sampling.
@@ -29,6 +33,8 @@ type TraceConfig struct {
 // StreamFormat data format of a trace. Can be either the legacy JSON format
 // or the protocol buffer format. Note that the JSON format will be deprecated
 // soon.
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/Tracing#type-StreamFormat
 type StreamFormat string
 
 // String returns the StreamFormat as string value.
@@ -71,6 +77,8 @@ func (t *StreamFormat) UnmarshalJSON(buf []byte) error {
 }
 
 // StreamCompression compression type to use for traces returned via streams.
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/Tracing#type-StreamCompression
 type StreamCompression string
 
 // String returns the StreamCompression as string value.
@@ -113,6 +121,8 @@ func (t *StreamCompression) UnmarshalJSON(buf []byte) error {
 }
 
 // RecordMode controls how the trace buffer stores data.
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/Tracing#type-recordMode
 type RecordMode string
 
 // String returns the RecordMode as string value.
@@ -162,6 +172,8 @@ func (t *RecordMode) UnmarshalJSON(buf []byte) error {
 
 // TransferMode whether to report trace events as series of dataCollected
 // events or to save trace to a stream (defaults to ReportEvents).
+//
+// See: https://chromedevtools.github.io/devtools-protocol/tot/Tracing#type-transferMode
 type TransferMode string
 
 // String returns the TransferMode as string value.
