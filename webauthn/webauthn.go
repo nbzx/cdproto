@@ -12,7 +12,7 @@ package webauthn
 import (
 	"context"
 
-	"github.com/chromedp/cdproto/cdp"
+	"github.com/nbzx/cdproto/cdp"
 )
 
 // EnableParams enable the WebAuthn domain and start intercepting credential
