@@ -54,6 +54,7 @@ import (
 	"github.com/nbzx/cdproto/tethering"
 	"github.com/nbzx/cdproto/tracing"
 	"github.com/nbzx/cdproto/webaudio"
+	"github.com/nbzx/cdproto/webauthn"
 	"github.com/mailru/easyjson"
 )
 
@@ -617,6 +618,8 @@ const (
 	EventWebAudioContextCreated                            = "WebAudio.contextCreated"
 	EventWebAudioContextDestroyed                          = "WebAudio.contextDestroyed"
 	EventWebAudioContextChanged                            = "WebAudio.contextChanged"
+	CommandWebAuthnEnable                                  = webauthn.CommandEnable
+	CommandWebAuthnDisable                                 = webauthn.CommandDisable
 )
 
 // Error error type.
@@ -2279,6 +2282,12 @@ func UnmarshalMessage(msg *Message) (interface{}, error) {
 
 	case EventWebAudioContextChanged:
 		v = new(webaudio.EventContextChanged)
+
+	case CommandWebAuthnEnable:
+		return emptyVal, nil
+
+	case CommandWebAuthnDisable:
+		return emptyVal, nil
 
 	default:
 		return nil, cdp.ErrUnknownCommandOrEvent(msg.Method)
